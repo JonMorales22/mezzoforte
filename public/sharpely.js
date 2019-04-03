@@ -1,3 +1,6 @@
+var Hello = require('./Midis.js');
+
+
 var audioCtx = new window.AudioContext;
 var myScript = document.querySelector('script');
 var pre = document.querySelector('pre');
@@ -7,9 +10,10 @@ var div = document.querySelector('.note_display')
 var midiAccess;
 
 window.addEventListener('load', function() {
+  console.log(Hello.Hello());
+  
   navigator.requestMIDIAccess()
     .then((midiaccess) =>{
-      console.log('ass');
       midiAccess = midiaccess;
       initMidiAccess();
     });  
