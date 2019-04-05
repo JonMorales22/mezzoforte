@@ -1,84 +1,23 @@
-var Hello = require('./Midis.js');
+// var myScript = document.querySelector('script');
+// var div = document.querySelector('.note_display')
 
-
-var audioCtx = new window.AudioContext;
-var myScript = document.querySelector('script');
-var pre = document.querySelector('pre');
-
-var div = document.querySelector('.note_display')
-
-var midiAccess;
+var Midis = require('./Midis.js');
 
 window.addEventListener('load', function() {
-  console.log(Hello.Hello());
-  
+  //console.log(Hello.Hello());
   navigator.requestMIDIAccess()
     .then((midiaccess) =>{
-      midiAccess = midiaccess;
-      initMidiAccess();
+      Midis.setMidiAccess(midiaccess);
+      var inputs = Midis.getInputs();
+      Midis.setMidiEvent(inputs[0]);
     });  
 })
 
-function initMidiAccess() {
-  const inputs = midiAccess.inputs.values();
-  
-  var result = inputs.next();
-  console.log(result);
+console.log(Midis.setMidiAccess());
 
-  result.value.onmidimessage = MIDIMessageEventHandler;
-}
-
-function MIDIMessageEventHandler(event) {
-  // Mask off the lower nibble (MIDI channel, which we don't care about)
-  switch (event.data[0] & 0xf0) {
-    case 0x90:
-      if (event.data[2]!=0) {  // if velocity != 0, this is a note-on message
-        noteOn(event.data[1]);
-        return;
-      }
-      // if velocity == 0, fall thru: it's a note-off.  MIDI's weird, y'all.
-    case 0x80:
-      noteOff(event.data[1]);
-      return;
-  }
-}
-
-function frequencyFromNoteNumber( note ) {
-  return 440 * Math.pow(2,(note-69)/12);
-}
-
-function noteOn(noteNumber) {
-  var noteFreq = frequencyFromNoteNumber(noteNumber)
-  playSound({wave: "sine", freq: noteFreq, duration: .25});
-  displayNote(noteFreq);
-
-  console.log(noteNumber);
-  console.log(noteFreq);
-}
-
-function noteOff(data) {
-  console.log(data);
-}
-
-function playSound(sound) {
-  var wave = createWave(sound.wave, sound.freq);  
-  wave.start();
-  wave.stop(audioCtx.currentTime + sound.duration);
-}
-
-function createWave(type, value) {
-  var oscillator = audioCtx.createOscillator();
-  oscillator.type = type;
-  oscillator.frequency.setValueAtTime(value, audioCtx.currentTime);
-  oscillator.connect(audioCtx.destination);
-  return oscillator;
-}
-
-function displayNote(note) {
-  div.innerHTML = note;
-}
-
-pre.innerHTML = myScript.innerHTML
+// function displayNote(note) {
+//   div.innerHTML = note;
+// }
 
 // navigator.requestMIDIAccess()
 //   .then(function(midiAccess) {
