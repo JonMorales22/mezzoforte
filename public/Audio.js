@@ -11,9 +11,9 @@ function createWave(type, value) {
 
 module.exports = {
   playSound: function(noteFrequency) {
-    console.log(noteFrequency);
+    //console.log(noteFrequency);
     var note = Notes.FrequencyToNotes()[noteFrequency];
-    console.log(note);
+    //console.log(note);
     var wave = createWave("sine", noteFrequency)
     wave.start();
     wave.stop(audioCtx.currentTime + .25);

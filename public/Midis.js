@@ -29,7 +29,7 @@ function frequencyFromNoteNumber( note ) {
 module.exports = {
   setMidiAccess: function(midi) {
     midiStuff = midi;
-    console.log(midiStuff);
+    //console.log(midiStuff);
   },
 
   getInputs: function() {
@@ -44,7 +44,7 @@ module.exports = {
 
   setInput: function(input) {
     input.onmidimessage = MIDIMessageEventHandler;
-    console.log(input);
+    //console.log(input);
   },
 
   setNoteOnandOff: function(noteOn, noteOff) {
