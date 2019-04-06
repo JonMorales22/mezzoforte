@@ -1,4 +1,5 @@
 const audioCtx = new window.AudioContext;
+const Notes = require('./Notes.js');
 
 function createWave(type, value) {
   var oscillator = audioCtx.createOscillator();
@@ -9,9 +10,12 @@ function createWave(type, value) {
 }
 
 module.exports = {
-  playSound: function(sound) {
-    var wave = createWave(sound.wave, sound.freq);  
+  playSound: function(noteFrequency) {
+    console.log(noteFrequency);
+    var note = Notes.FrequencyToNotes()[noteFrequency];
+    console.log(note);
+    var wave = createWave("sine", noteFrequency)
     wave.start();
-    wave.stop(audioCtx.currentTime + sound.duration);
+    wave.stop(audioCtx.currentTime + .25);
   }
 } 
