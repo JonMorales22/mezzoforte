@@ -1,45 +1,19 @@
-var Midis = require('./Midis.js');
-var Audio = require('./Audio.js');
-var Notes = require('./Notes.js');
-// var Quiz = require('./Quiz');
+const Midis = require('./Midis.js');
+const Audio = require('./Audio.js');
+const Notes = require('./Notes.js');
+const Quiz = require('./Quiz.js');
 
 var quiz_button = document.querySelector(".start_quiz");
 
-var test = makeTest(10);
-var question;
-
 quiz_button.onclick = function() {
-  if(test.length > 0){
-    question = test.shift();
-    console.log(Notes.FrequencyToNotes()[question]);
-    Audio.playSound(question);
-  }
-  else
-    console.log("test end");
+  Quiz.makeNewQuestion();
+  console.log(Notes.FrequencyToNotes()[Quiz.getCurrentQuestion()]);
+  Audio.playSound(Quiz.getCurrentQuestion());
 };
 
-function makeTest(numQuestions) {
-  var test = [];
-  for(let i=0; i< numQuestions; i++)
-    test.push(getRandomNote()); 
-
-  return test;
-}
-
-function getRandomNote() {
-  var NotesArray = Notes.GetNotesArray()
-  var index = Math.floor(Math.random() * NotesArray.length);
-  return NotesArray[index];
-}
-
 function noteOn(noteFrequency) {
-  
   Audio.playSound(noteFrequency);
-
-  if(noteFrequency == question)
-    console.log("Correct!")
-  else
-    console.log("Wrong!")
+  Quiz.checkAnswer(noteFrequency);
 }
 
 window.addEventListener('load', function() {
