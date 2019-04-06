@@ -1,13 +1,13 @@
 const Midis = require('./Midis.js');
 const Audio = require('./Audio.js');
-const Notes = require('./Notes.js');
+// const Notes = require('./Notes.js');
 const Quiz = require('./Quiz.js');
 
 var quiz_button = document.querySelector(".start_quiz");
 
 quiz_button.onclick = function() {
-  Quiz.makeNewQuestion();
-  console.log(Notes.FrequencyToNotes()[Quiz.getCurrentQuestion()]);
+  Quiz.makeQuestion();
+  //console.log(Notes.FrequencyToNotes()[Quiz.getCurrentQuestion()]);
   Audio.playSound(Quiz.getCurrentQuestion());
 };
 

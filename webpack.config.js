@@ -2,7 +2,7 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: "./public/sharpely.js",
+  entry: "./public/MezzoForte.js",
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: "index_bundle.js"
