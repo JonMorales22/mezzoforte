@@ -1,4 +1,5 @@
-const Midis = require('./Midis.js');
+import { midi as Midis } from './Midis.js';
+
 const Audio = require('./Audio.js');
 // const Notes = require('./Notes.js');
 const Quiz = require('./Quiz.js');
@@ -19,9 +20,15 @@ function noteOn(noteFrequency) {
 window.addEventListener('load', function() {
   navigator.requestMIDIAccess()
     .then((midiaccess) =>{
+      //console.log(midiaccess);
+      //var Midis = new midis();
+      //console.log(Midis);
       Midis.setMidiAccess(midiaccess);
       var inputs = Midis.getInputs();
-      Midis.setNoteOnandOff(noteOn, function() {} );
-      Midis.setInput(inputs[0]);
+      //console.log(inputs);
+      //Midis.setNoteOnandOff(noteOn, function() {} );
+      Midis.setInput(inputs[0], Midis);
+      //Midis.checkThis();
+      Midis.on('noteOn', (noteFrequency) => { console.log(noteFrequency) })
     });  
 })
