@@ -1,9 +1,10 @@
 const Notes = require("./Notes.js");
 
 var numTotalQuestions = 0, numCorrectAnswers = 0;
-var NotesArray = Notes.GetNotesArray();
+var NoteFrequenciesArray = Notes.GetNoteFrequenciesArray();
 var question;
 var isTestActive=false;
+
 module.exports = {
   getNumberCorrectAnswers: function() { return numCorrectAnswers },
   getTotalNumberQuestions: function() { return numTotalQuestions },
@@ -32,7 +33,7 @@ function getRandomNote(num) {
 
 function makeQuestion() {
     toggleIsTestActive();
-    question = NotesArray[getRandomNote(NotesArray.length)];
+    question = NoteFrequenciesArray[getRandomNote(NoteFrequenciesArray.length)];
     // console.log(question);
     numTotalQuestions++;
 }

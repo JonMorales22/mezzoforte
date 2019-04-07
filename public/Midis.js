@@ -1,18 +1,18 @@
 const EventEmitter = require('events');
-//var Audio = require('./Audio.js');
-var midiStuff, NoteOn, NoteOff;
 
-export default class Midis extends EventEmitter {
+var midiStuff;
+
+class Midi extends EventEmitter {
   setMidiAccess(midis) {
     midiStuff = midis;
   }
 
-  setInput(input, midis) {
+  setInput(input) {
     input.onmidimessage = MIDIMessageEventHandler;
   }
 
   getInputs() {
-    //console.log(this);
+
     var inputsArray = [];
     var inputValues = midiStuff.inputs;
     
@@ -39,16 +39,14 @@ function MIDIMessageEventHandler(event) {
       case 0x90:
         if (event.data[2]!=0) {  // if velocity != 0, this is a note-on message
           var noteFreq = frequencyFromNoteNumber(event.data[1])
-          midi.emit("noteOn", noteFreq);
+          Midis.emit("noteOn", noteFreq);
           return;
         }
         // if velocity == 0, fall thru: it's a note-off.  MIDI's weird, y'all.
       case 0x80:
-         midi.emit("noteOff");
+         Midis.emit("noteOff");
         return;
     }
   }
 
-
-
-export var midi = new Midis();
+export var Midis = new Midi();

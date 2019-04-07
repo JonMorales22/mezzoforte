@@ -23,11 +23,11 @@ const Notes = {
 module.exports = {
   FrequencyToNotes: function() { return Frequencies },
   NotesToFrequency: function() { return Notes },
-  GetNotesArray: function() {
-    var NotesArray = []
+  GetNoteFrequenciesArray: function() {
+    var NoteFrequenicesArray = []
     for(var key in Notes) {
-      NotesArray.push( Notes[key] );
+      NoteFrequenicesArray.push( Notes[key] );
     }
-    return NotesArray;
+    return NoteFrequenicesArray;
   }
 }
