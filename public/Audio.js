@@ -1,21 +1,25 @@
-const audioCtx = new window.AudioContext;
 const Notes = require('./Notes.js');
+var AudioContext;
+
+class AudioAPI {
+    setAudioContext(audioContext) {
+     console.log(audioContext);
+     AudioContext = audioContext
+   }
+    playSound(noteFrequency) {
+    var note = Notes.FrequencyToNotes()[noteFrequency];
+    var wave = createWave("sine", noteFrequency)
+    wave.start();
+    wave.stop(AudioContext.currentTime + .25);
+  }
+}
 
 function createWave(type, value) {
-  var oscillator = audioCtx.createOscillator();
+  var oscillator = AudioContext.createOscillator();
   oscillator.type = type;
-  oscillator.frequency.setValueAtTime(value, audioCtx.currentTime);
-  oscillator.connect(audioCtx.destination);
+  oscillator.frequency.setValueAtTime(value, AudioContext.currentTime);
+  oscillator.connect(AudioContext.destination);
   return oscillator;
 }
 
-module.exports = {
-  playSound: function(noteFrequency) {
-    //console.log(noteFrequency);
-    var note = Notes.FrequencyToNotes()[noteFrequency];
-    //console.log(note);
-    var wave = createWave("sine", noteFrequency)
-    wave.start();
-    wave.stop(audioCtx.currentTime + .25);
-  }
-} 
+export var Audio = new AudioAPI();

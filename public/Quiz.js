@@ -5,12 +5,19 @@ var NoteFrequenciesArray = Notes.GetNoteFrequenciesArray();
 var question;
 var isTestActive=false;
 
-module.exports = {
-  getNumberCorrectAnswers: function() { return numCorrectAnswers },
-  getTotalNumberQuestions: function() { return numTotalQuestions },
-  getCurrentQuestion: function() { return question },
-  makeQuestion: makeQuestion,
-  checkAnswer: function(answer) {
+class quiz {
+  getNumberCorrectAnswers() { return numCorrectAnswers }
+  getTotalNumberQuestions() { return numTotalQuestions }
+  getCurrentQuestion() { return question }
+  
+  makeQuestion() {
+    toggleIsTestActive();
+    question = NoteFrequenciesArray[getRandomNote(NoteFrequenciesArray.length)];
+    // console.log(question);
+    numTotalQuestions++;
+  }
+
+  checkAnswer(answer) {
     if(!isTestActive)
       return;
 
@@ -32,10 +39,9 @@ function getRandomNote(num) {
 }
 
 function makeQuestion() {
-    toggleIsTestActive();
-    question = NoteFrequenciesArray[getRandomNote(NoteFrequenciesArray.length)];
-    // console.log(question);
-    numTotalQuestions++;
+  toggleIsTestActive();
+  question = NoteFrequenciesArray[getRandomNote(NoteFrequenciesArray.length)];
+  numTotalQuestions++;
 }
 
 function toggleIsTestActive() {
@@ -44,3 +50,8 @@ function toggleIsTestActive() {
   else
     isTestActive=false;
 }
+
+export var Quiz = new quiz();
+
+
+
