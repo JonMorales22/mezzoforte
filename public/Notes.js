@@ -20,14 +20,34 @@ const Notes = {
   "c5": 523.25
 }
 
+const Midi = {
+  60: 261.63,
+  62: 293.66,
+  64: 329.63,
+  65: 349.23,
+  67: 392.00,
+  69: 440.00,
+  71: 493.88,
+  72: 523.25
+}
+
 module.exports = {
   FrequencyToNotes: function() { return Frequencies },
   NotesToFrequency: function() { return Notes },
+  MidiToFrequency : function() { return Midi },
   GetNoteFrequenciesArray: function() {
     var NoteFrequenicesArray = []
     for(var key in Notes) {
       NoteFrequenicesArray.push( Notes[key] );
     }
     return NoteFrequenicesArray;
+  },
+  GetMidiNotesArray: function() {
+    var MidiNotesArray = []
+    
+    for(var key in Midi) 
+      MidiNotesArray.push(Midi[key]);
+    
+    return MidiNotesArray;
   }
 }

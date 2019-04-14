@@ -1,7 +1,9 @@
-const Notes = require("./Notes.js");
+// const Notes = require("./Notes.js");
 
 var numTotalQuestions = 0, numCorrectAnswers = 0;
-var NoteFrequenciesArray = Notes.GetNoteFrequenciesArray();
+// var NoteFrequenciesArray = Notes.GetNoteFrequenciesArray();
+// var MidiNotesArray = Notes.GetMidiNotesArray();
+var questionsArray;
 var question;
 var isTestActive=false;
 
@@ -9,11 +11,11 @@ class quiz {
   getNumberCorrectAnswers() { return numCorrectAnswers }
   getTotalNumberQuestions() { return numTotalQuestions }
   getCurrentQuestion() { return question }
-  
+  setQuesionsArray(qA) { questionsArray = qA }
   makeQuestion() {
     toggleIsTestActive();
-    question = NoteFrequenciesArray[getRandomNote(NoteFrequenciesArray.length)];
-    // console.log(question);
+    question = questionsArray[getRandomQuestion(questionsArray.length)];
+    console.log(question);
     numTotalQuestions++;
   }
 
@@ -34,15 +36,15 @@ class quiz {
   }
 }
 
-function getRandomNote(num) {
+function getRandomQuestion(num) {
   return Math.floor(Math.random() * num);
 }
 
-function makeQuestion() {
-  toggleIsTestActive();
-  question = NoteFrequenciesArray[getRandomNote(NoteFrequenciesArray.length)];
-  numTotalQuestions++;
-}
+// function makeQuestion() {
+//   toggleIsTestActive();
+//   question = NoteFrequenciesArray[getRandomNote(NoteFrequenciesArray.length)];
+//   numTotalQuestions++;
+// }
 
 function toggleIsTestActive() {
   if(!isTestActive)

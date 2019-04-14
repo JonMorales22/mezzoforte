@@ -23,7 +23,6 @@ class Midi extends EventEmitter {
   }
 }
 
-
 function round(value, decimals) {
   return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
@@ -38,14 +37,17 @@ function MIDIMessageEventHandler(event) {
     switch (event.data[0] & 0xf0) {
       case 0x90:
         if (event.data[2]!=0) {  // if velocity != 0, this is a note-on message
-          var noteFreq = frequencyFromNoteNumber(event.data[1])
-          Midis.emit("noteOn", noteFreq);
+          //var noteFreq = frequencyFromNoteNumber(event.data[1])
+          //console.log(event.data)
+          Midis.emit("noteOn", event.data[1]);
           return;
         }
         // if velocity == 0, fall thru: it's a note-off.  MIDI's weird, y'all.
-      case 0x80:
-         Midis.emit("noteOff");
+      case 0x80: {
+        //console.log(event.data);
+        Midis.emit("noteOff");
         return;
+      }
     }
   }
 
