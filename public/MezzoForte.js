@@ -3,9 +3,9 @@
 import { Midis } from './Midis.js';
 import { Audio } from './Audio.js';
 import { Quiz } from './Quiz.js';
-// import { Notes } from './Notes.js';
+import { Notes } from './Notes.js';
 
-const Notes = require('./Notes.js');
+// const Notes = require('./Notes.js');
 //const MidiNotes = Notes.GetMidiNotesArray();
 
 var quiz_button = document.querySelector(".start_quiz");
@@ -23,13 +23,14 @@ quiz_button.onclick = function() {
 window.addEventListener('load', function() {
   navigator.requestMIDIAccess()
     .then((midiaccess) =>{
+
       Midis.setMidiAccess(midiaccess);
       var inputs = Midis.getInputs();
       Midis.setInput(inputs[0], Midis);
+
       Midis.on('noteOn', (midiNote) => {
-        // console.log(noteFrequency);
-        Audio.playSound(Notes.MidiToFrequency()[midiNote]) 
-        Quiz.checkAnswer(Notes.MidiToFrequency()[midiNote]);
+        Audio.playSound(Notes.Midi[midiNote]) 
+        Quiz.checkAnswer(Notes.Midi[midiNote]);
       })
     });  
 })

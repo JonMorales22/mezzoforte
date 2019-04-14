@@ -1,12 +1,14 @@
-const Notes = require('./Notes.js');
+// const Notes = require('./Notes.js');
+import { Notes } from './Notes.js';
+
 var AudioContext;
 
-class AudioAPI {
+class AudioApi {
     setAudioContext(audioContext) {
      AudioContext = audioContext
    }
     playSound(noteFrequency) {
-    var note = Notes.FrequencyToNotes()[noteFrequency];
+    // var note = Notes.FrequencyToNotes()[noteFrequency];
     var wave = createWave("sine", noteFrequency)
     wave.start();
     wave.stop(AudioContext.currentTime + .25);
@@ -35,4 +37,4 @@ function frequencyFromNoteNumber(midiNote) {
   return round(freq, 2);
 }
 
-export var Audio = new AudioAPI();
+export var Audio = new AudioApi();
