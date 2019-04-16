@@ -47,6 +47,17 @@ class NotesUtility {
     
     return MidiNotesArray;
   }
+
+  calcMajorChords(rootMidiNote) {
+    var third = rootMidiNote+4;
+    var fifth = rootMidiNote+7;
+    var chord = [rootMidiNote, third, fifth];
+    return chord;
+  }
+
+  FrequencyFromNoteNumber( note ) { return round(440 * Math.pow(2,(note-69)/12), 2); }
 }
+
+function Round(value, decimals) { return Number(Math.round(value+'e'+decimals)+'e-'+decimals); }
 
 export var Notes = new NotesUtility();

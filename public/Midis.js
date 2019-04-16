@@ -39,15 +39,6 @@ class Midi extends EventEmitter {
   }
 }
 
-// function round(value, decimals) {
-//   return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
-// }
-
-// function frequencyFromNoteNumber( note ) {
-//   var freq = 440 * Math.pow(2,(note-69)/12);
-//   return round(freq, 2);
-// }
-
 function MIDIMessageEventHandler(event) {
     // Mask off the lower nibble (MIDI channel, which we don't care about)
     switch (event.data[0] & 0xf0) {
