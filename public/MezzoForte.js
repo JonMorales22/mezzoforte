@@ -20,19 +20,25 @@ quiz_button.onclick = function() {
   Audio.playSound(Quiz.getCurrentQuestion());
 };
 
-window.addEventListener('load', function() {
-  navigator.requestMIDIAccess()
-    .then((midiaccess) =>{
+window.addEventListener('load', async function() {
+  var midiaccess = await navigator.requestMIDIAccess();
+  Midis.setMidiAccess(midiaccess);
+  var inputs = Midis.getInputs();
+  console.log(inputs);
+    //   Midis.setInput(inputs[0]);
+    // .then((midiaccess) =>{
+    //   Midis.setMidiAccess(midiaccess);
+    //   var inputs = Midis.getInputs();
+    //   Midis.setInput(inputs[0]);
 
-      Midis.setMidiAccess(midiaccess);
-      var inputs = Midis.getInputs();
-      Midis.setInput(inputs[0], Midis);
-
-      Midis.on('noteOn', (midiNote) => {
-        Audio.playSound(Notes.Midi[midiNote]) 
-        Quiz.checkAnswer(Notes.Midi[midiNote]);
-      })
-    });  
+    //   var test = await Midis.openInput();
+    //   console.log(test);
+      
+      // Midis.on('noteOn', (midiNote) => {
+      //   Audio.playSound(Notes.Midi[midiNote]) 
+      //   Quiz.checkAnswer(Notes.Midi[midiNote]);
+      // })
+    // });  
 })
 
 function calcMajorChords(rootMidiNote) {

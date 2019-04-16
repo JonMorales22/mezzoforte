@@ -3,12 +3,16 @@ const EventEmitter = require('events');
 var midiStuff;
 
 class Midi extends EventEmitter {
+  Input;
+
   setMidiAccess(midis) {
     midiStuff = midis;
   }
 
   setInput(input) {
     input.onmidimessage = MIDIMessageEventHandler;
+    this.Input = input;
+    console.log(input);
   }
 
   getInputs() {
@@ -16,21 +20,35 @@ class Midi extends EventEmitter {
     var inputsArray = [];
     var inputValues = midiStuff.inputs;
     
+
     midiStuff.inputs.forEach(function(port, key) {
+      console.log(port);
       inputsArray.push(port);
     })
+
+
     return inputsArray;
   }
+
+  // async openInput() {
+  //   try {
+  //     var result = await this.Input.open()
+  //     return result;
+  //   }
+  //   catch(error) {
+  //     console.err(error);
+  //   }
+  // }
 }
 
-function round(value, decimals) {
-  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
-}
+// function round(value, decimals) {
+//   return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+// }
 
-function frequencyFromNoteNumber( note ) {
-  var freq = 440 * Math.pow(2,(note-69)/12);
-  return round(freq, 2);
-}
+// function frequencyFromNoteNumber( note ) {
+//   var freq = 440 * Math.pow(2,(note-69)/12);
+//   return round(freq, 2);
+// }
 
 function MIDIMessageEventHandler(event) {
     // Mask off the lower nibble (MIDI channel, which we don't care about)
