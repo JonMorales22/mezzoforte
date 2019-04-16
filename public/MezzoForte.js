@@ -22,10 +22,12 @@ quiz_button.onclick = function() {
 
 window.addEventListener('load', async function() {
   var midiaccess = await navigator.requestMIDIAccess();
+  
   Midis.setMidiAccess(midiaccess);
   var inputs = Midis.getInputs();
-  console.log(inputs);
-    //   Midis.setInput(inputs[0]);
+  Midis.setInput(inputs[0]);
+
+  var test = await Midis.openInput();
     // .then((midiaccess) =>{
     //   Midis.setMidiAccess(midiaccess);
     //   var inputs = Midis.getInputs();

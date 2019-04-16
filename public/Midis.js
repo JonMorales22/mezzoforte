@@ -12,7 +12,6 @@ class Midi extends EventEmitter {
   setInput(input) {
     input.onmidimessage = MIDIMessageEventHandler;
     this.Input = input;
-    console.log(input);
   }
 
   getInputs() {
@@ -22,7 +21,6 @@ class Midi extends EventEmitter {
     
 
     midiStuff.inputs.forEach(function(port, key) {
-      console.log(port);
       inputsArray.push(port);
     })
 
@@ -30,15 +28,15 @@ class Midi extends EventEmitter {
     return inputsArray;
   }
 
-  // async openInput() {
-  //   try {
-  //     var result = await this.Input.open()
-  //     return result;
-  //   }
-  //   catch(error) {
-  //     console.err(error);
-  //   }
-  // }
+  async openInput() {
+    try {
+      var result = await this.Input.open()
+      return result;
+    }
+    catch(error) {
+      console.err(error);
+    }
+  }
 }
 
 // function round(value, decimals) {
