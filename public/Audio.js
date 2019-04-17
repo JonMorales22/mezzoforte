@@ -3,13 +3,19 @@ import { Notes } from './Notes.js';
 var AudioContext;
 
 class AudioApi {
-    setAudioContext(audioContext) {
+   setAudioContext(audioContext) {
      AudioContext = audioContext
    }
-    playSound(noteFrequency) {
-    var wave = createWave("sine", noteFrequency)
-    wave.start();
-    wave.stop(AudioContext.currentTime + .25);
+   playSound(midiNote) {
+     var wave = createWave("sine", Notes.FrequencyFromNoteNumber(midiNote))
+     wave.start();
+     wave.stop(AudioContext.currentTime + .25);
+  }
+
+  playChord(chords) {
+    chords.forEach(note => {
+      this.playSound(Notes.FrequencyFromNoteNumber(note));  
+    })
   }
 
   playSoundFromMidiNote(midiNote) {

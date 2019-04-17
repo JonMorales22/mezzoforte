@@ -8,8 +8,45 @@ class NotesUtility {
     67: 392.00,
     69: 440.00,
     71: 493.88,
-    72: 523.25
+    72: 523.25,
+    74: 587.32,
+    76: 659.25,
+    77: 698.45,
+    79: 783.98,
+    81: 880.00,
+    83: 987.76,
+    84: 1046.50,
   }
+
+  FrequencyToMidi = {
+    261.63: 60,
+    293.66: 62,
+    329.63: 64,
+    349.23: 65,
+    392.00: 67,
+    440.00: 69,
+    493.88: 71,
+    523.25: 72,
+    587.32: 74, 
+    659.25: 76, 
+    698.45: 77, 
+    783.98: 79, 
+    880.00: 81, 
+    987.76: 83, 
+    1046.50: 84
+  }
+
+  MidiToNoteName = {
+    60: "c4",
+    62: "d4",
+    64: "e4",
+    65: "f4",
+    67: "g4",
+    69: "a4",
+    71: "b4",
+    72: "c5"
+  }
+
   NotesDict = {
     "c4": 261.63, 
     "d4": 293.66, 
@@ -28,7 +65,14 @@ class NotesUtility {
     392.00: "g4", 
     440.00: "a4", 
     493.88: "b4", 
-    523.25: "c5" 
+    523.25: "c5",
+    587.32: "d5", 
+    659.25: "e5", 
+    698.45: "f5", 
+    783.98: "g5", 
+    880.00: "a5", 
+    987.76: "b5", 
+    1046.50: "c6" 
   }
 
   GetNoteFrequenciesArray() {
@@ -42,8 +86,8 @@ class NotesUtility {
   GetMidiNotesArray() {
     var MidiNotesArray = []
     
-    for(var key in Midi) 
-      MidiNotesArray.push(Midi[key]);
+    for(var key in this.FrequencyToMidi) 
+      MidiNotesArray.push(this.FrequencyToMidi[key]);
     
     return MidiNotesArray;
   }
@@ -55,7 +99,7 @@ class NotesUtility {
     return chord;
   }
 
-  FrequencyFromNoteNumber( note ) { return round(440 * Math.pow(2,(note-69)/12), 2); }
+  FrequencyFromNoteNumber( note ) { return Round(440 * Math.pow(2,(note-69)/12), 2); }
 }
 
 function Round(value, decimals) { return Number(Math.round(value+'e'+decimals)+'e-'+decimals); }

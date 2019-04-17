@@ -7,7 +7,7 @@ class quiz {
   getNumberCorrectAnswers() { return numCorrectAnswers }
   getTotalNumberQuestions() { return numTotalQuestions }
   getCurrentQuestion() { return question }
-  setQuesionsArray(qA) { questionsArray = qA }
+  setQuestionsArray(qA) { questionsArray = qA }
   makeQuestion() {
     toggleIsTestActive();
     question = questionsArray[getRandomQuestion(questionsArray.length)];
