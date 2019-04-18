@@ -33,13 +33,6 @@ function buildQuestionsArray(type) {
   }
 }
 
-function ass(midiAccess) {
-  console.log(midiAccess);
-  Midis.setMidiAccess(midiAccess);
-  var inputs = Midis.getInputs();
-  Midis.setInput(inputs[0]);
-}
-
 quiz_button.onclick = function() {
   Quiz.makeQuestion();
   Audio.playChord(Quiz.getCurrentQuestion());
@@ -47,11 +40,7 @@ quiz_button.onclick = function() {
 
 window.addEventListener('load', async function() {
   buildQuestionsArray(2);
- 
-  var midiaccess = await navigator.requestMIDIAccess();
-  ass(midiaccess);
-
-  var test = await Midis.openInput();
+  var test = await Midis.setMidiAccess(navigator);
 })
 
 Midis.on('noteOn', (midiNote) => {

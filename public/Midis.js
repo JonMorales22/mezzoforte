@@ -5,8 +5,20 @@ var midiStuff;
 class Midi extends EventEmitter {
   Input;
 
-  setMidiAccess(midis) {
-    midiStuff = midis;
+  async setMidiAccess(navigator) {
+    try {
+      midiStuff = await navigator.requestMIDIAccess();
+      
+      var inputs = this.getInputs();
+      this.setInput(inputs[0]);
+      var result = await this.Input.open();
+
+      return this.Input;
+    }
+    catch(error) {
+      console.error(error)
+    }
+
   }
 
   setInput(input) {
@@ -28,15 +40,18 @@ class Midi extends EventEmitter {
     return inputsArray;
   }
 
-  async openInput() {
-    try {
-      var result = await this.Input.open()
-      return result;
-    }
-    catch(error) {
-      console.err(error);
-    }
-  }
+//   async openInput() {
+//     try {
+//       var result = await this.Input.open()
+//       return result;
+//     }
+//     catch(error) {
+//       console.error("Error: " + error);
+//       throw(error);
+//     }
+//   }
+
+
 }
 
 function MIDIMessageEventHandler(event) {
