@@ -6,12 +6,22 @@ class ChordBuilder {
     var third = rootMidiNote+4;
     var fifth = rootMidiNote+7;
     var noteName = Notes.Frequencies[Notes.Midi[rootMidiNote]];
-    //var chord = {[noteName]: [rootMidiNote, third, fifth]};
     return [rootMidiNote, third, fifth];
   }
 
   BuildMinorChord() {
 
+  }
+
+  BuildMajorChordsArray() {
+    var majorChords = [];
+  
+    Notes.GetMidiNotesArray().forEach(root => {
+      var temp = this.BuildMajorChord(root)
+      majorChords.push(temp);
+    });
+  
+    return majorChords;
   }
 
 }

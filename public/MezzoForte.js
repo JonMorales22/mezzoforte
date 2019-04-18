@@ -12,15 +12,6 @@ var audioContext = new window.AudioContext;
 
 Audio.setAudioContext(audioContext);
 
-function buildMajorChords() {
-  var majorChords = [];
-  Notes.GetMidiNotesArray().forEach(root => {
-    var temp = Chords.BuildMajorChord(root)
-    majorChords.push(temp);
-  });
-  return majorChords;
-}
-
 function buildQuestionsArray(type) {
   
   switch(type) {
@@ -37,11 +28,17 @@ function buildQuestionsArray(type) {
       return;
 
     case 2:
-      Quiz.setQuestionsArray(buildMajorChords());
+      Quiz.setQuestionsArray(Chords.BuildMajorChordsArray());
       return;
   }
 }
 
+function ass(midiAccess) {
+  console.log(midiAccess);
+  Midis.setMidiAccess(midiAccess);
+  var inputs = Midis.getInputs();
+  Midis.setInput(inputs[0]);
+}
 
 quiz_button.onclick = function() {
   Quiz.makeQuestion();
@@ -50,16 +47,14 @@ quiz_button.onclick = function() {
 
 window.addEventListener('load', async function() {
   buildQuestionsArray(2);
+ 
   var midiaccess = await navigator.requestMIDIAccess();
-  
-  Midis.setMidiAccess(midiaccess);
-  var inputs = Midis.getInputs();
-  Midis.setInput(inputs[0]);
+  ass(midiaccess);
 
   var test = await Midis.openInput();
-    
-  Midis.on('noteOn', (midiNote) => {
-    Audio.playSound(midiNote) 
-    Quiz.checkAnswer(midiNote);
-  }) 
 })
+
+Midis.on('noteOn', (midiNote) => {
+  Audio.playSound(midiNote) 
+  Quiz.checkAnswer(midiNote);
+}) 
