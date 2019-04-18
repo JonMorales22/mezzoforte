@@ -8,10 +8,10 @@ class quiz {
   getTotalNumberQuestions() { return numTotalQuestions }
   getCurrentQuestion() { return question }
   setQuestionsArray(qA) { questionsArray = qA }
+  
   makeQuestion() {
     toggleIsTestActive();
     question = questionsArray[getRandomQuestion(questionsArray.length)];
-    console.log(question);
     numTotalQuestions++;
   }
 

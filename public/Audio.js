@@ -6,15 +6,19 @@ class AudioApi {
    setAudioContext(audioContext) {
      AudioContext = audioContext
    }
+
    playSound(midiNote) {
+     console.log(midiNote);
      var wave = createWave("sine", Notes.FrequencyFromNoteNumber(midiNote))
      wave.start();
      wave.stop(AudioContext.currentTime + .25);
   }
 
   playChord(chords) {
+    console.log(chords);
     chords.forEach(note => {
-      this.playSound(Notes.FrequencyFromNoteNumber(note));  
+      console.log(note);
+      this.playSound((note));  
     })
   }
 

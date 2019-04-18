@@ -9,20 +9,39 @@ import {Chords} from './Chord-Builder.js'
 var quiz_button = document.querySelector(".start_quiz");
 var audioContext = new window.AudioContext;
 
+
 Audio.setAudioContext(audioContext);
 
 function buildMajorChords() {
   var majorChords = [];
-  
   Notes.GetMidiNotesArray().forEach(root => {
     var temp = Chords.BuildMajorChord(root)
-    console.log(temp);
     majorChords.push(temp);
   });
-
-  console.log(majorChords);
-  Quiz.setQuestionsArray(majorChords);
+  return majorChords;
 }
+
+function buildQuestionsArray(type) {
+  
+  switch(type) {
+    case 1:
+      
+      var notesArr = Notes.GetMidiNotesArray();
+      var test = [];  
+      
+      notesArr.forEach(e => {
+        test.push([e]);
+      })
+
+      Quiz.setQuestionsArray(test);
+      return;
+
+    case 2:
+      Quiz.setQuestionsArray(buildMajorChords());
+      return;
+  }
+}
+
 
 quiz_button.onclick = function() {
   Quiz.makeQuestion();
@@ -30,7 +49,7 @@ quiz_button.onclick = function() {
 };
 
 window.addEventListener('load', async function() {
-  buildMajorChords();
+  buildQuestionsArray(2);
   var midiaccess = await navigator.requestMIDIAccess();
   
   Midis.setMidiAccess(midiaccess);
@@ -40,7 +59,6 @@ window.addEventListener('load', async function() {
   var test = await Midis.openInput();
     
   Midis.on('noteOn', (midiNote) => {
-    console.log(midiNote);
     Audio.playSound(midiNote) 
     Quiz.checkAnswer(midiNote);
   }) 
