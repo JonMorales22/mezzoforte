@@ -43,7 +43,18 @@ window.addEventListener('load', async function() {
   var test = await Midis.setMidiAccess(navigator);
 })
 
+
+var response = [];
+
 Midis.on('noteOn', (midiNote) => {
   Audio.playSound(midiNote) 
-  Quiz.checkAnswer(midiNote);
+  response.push(midiNote);
+  checkResponse();
 }) 
+
+function checkResponse() {
+  if(response.length >= 3){
+    Quiz.checkAnswer(response);
+    response = [];
+  }
+}
