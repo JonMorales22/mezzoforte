@@ -16,36 +16,61 @@ class quiz {
   }
 
   checkAnswer(answer) {
-    console.log(answer);
-    console.log(question);
-    if(!isTestActive)
-      return;
+  //   console.log("Answer: " + answer);
+  //   console.log("Question: " + question);
+
+  //   if(!isTestActive)
+  //     return;
     
-    if(checkArrayEquality(question, answer)) {
-      console.log('correct!');
-      numCorrectAnswers++;
+  //   if(check(question, answer)) {
+  //     console.log('correct!');
+  //   }
+  //   else {
+  //     console.log('wrong!')
+  //   }
+
+  //   console.log(`Number of questions: ${numTotalQuestions}`)
+  //   console.log(`Number of correct answers: ${numCorrectAnswers}`)
+  // }
+    
+    if(!isTestActive || question.length<1  )
+      return; 
+
+
+    if(!check(question, answer)) {
+      console.log("wrong!!");
+      toggleIsTestActive();
     }
     else {
-      console.log('wrong!')
+      console.log("correct!");
     }
 
-    toggleIsTestActive();
     console.log(`Number of questions: ${numTotalQuestions}`)
     console.log(`Number of correct answers: ${numCorrectAnswers}`)
+
   }
+
 }
 
-function checkArrayEquality(arr1, arr2) {
-  var flag;
-  if(arr1.length != arr2.length)
+function check(arr1, answer) {
+  
+  var index = arr1.indexOf(answer)
+  
+  if(index == -1)
     return false;
 
-  for(let i=0;i<arr1.length;i++) {
-    if(arr1[i] != arr2[i])
-      return false;
-  }
+  if(index == 0)
+    question.shift();
+  else if(index==question.length-1)
+    question.pop();
+  else {
 
-  console.log("do we reach this code path?");
+    var back = arr1.slice(index+1);
+    var front = arr1.slice(0,index);
+    question = front.concat(back);
+    
+  }
+  console.log("question after: " + question);
   return true;
 }
 

@@ -4,7 +4,9 @@ import { Midis } from './Midis.js';
 import { Audio } from './Audio.js';
 import { Quiz } from './Quiz.js';
 import { Notes } from './Notes.js';
-import {Chords} from './Chord-Builder.js'
+import { Chords } from './Chord-Builder.js'
+import { Test } from './Test.js';
+
 
 var quiz_button = document.querySelector(".start_quiz");
 var audioContext = new window.AudioContext;
@@ -30,6 +32,10 @@ function buildQuestionsArray(type) {
     case 2:
       Quiz.setQuestionsArray(Chords.BuildMajorChordsArray());
       return;
+
+    case 3: //THIS IS FOR TESTING ONLY!
+      Quiz.setQuestionsArray(Test.chords);
+      return;
   }
 }
 
@@ -39,7 +45,7 @@ quiz_button.onclick = function() {
 };
 
 window.addEventListener('load', async function() {
-  buildQuestionsArray(2);
+  buildQuestionsArray(3);
   var test = await Midis.setMidiAccess(navigator);
 })
 
@@ -48,8 +54,7 @@ var response = [];
 
 Midis.on('noteOn', (midiNote) => {
   Audio.playSound(midiNote) 
-  response.push(midiNote);
-  checkResponse();
+  Quiz.checkAnswer(midiNote);
 }) 
 
 function checkResponse() {
