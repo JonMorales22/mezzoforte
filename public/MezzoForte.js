@@ -6,7 +6,7 @@ import { Quiz } from './Quiz.js';
 import { Notes } from './Notes.js';
 import { Chords } from './Chord-Builder.js'
 import { Test } from './Test.js';
-
+import { midiEventManager }  from './Midi-Event-Manager';
 
 var quiz_button = document.querySelector(".start_quiz");
 var audioContext = new window.AudioContext;
@@ -51,11 +51,24 @@ window.addEventListener('load', async function() {
 
 
 var response = [];
+var isRecording = false;
 
-Midis.on('noteOn', (midiNote) => {
-  Audio.playSound(midiNote) 
-  Quiz.checkAnswer(midiNote);
+Midis.on('chordOn', (chord) => {
+  //Audio.playSound(midiNote) 
+  
+  // if(!isRecording)
+  //   recordChord();
+
+  Quiz.checkAnswer(chord);
+
+ console.log(chord);
 }) 
+
+function recordChord(midiNote) {
+  response.push(midiNote);
+  
+
+}
 
 function checkResponse() {
   if(response.length >= 3){

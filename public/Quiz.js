@@ -36,13 +36,20 @@ class quiz {
     if(!isTestActive || question.length<1  )
       return; 
 
+    var index = question.indexOf(answer);
 
-    if(!check(question, answer)) {
+    if(index==-1){
       console.log("wrong!!");
       toggleIsTestActive();
     }
     else {
-      console.log("correct!");
+      doShit(question, index);
+      
+      if(question.length<1) {
+        console.log("correct!");
+        numCorrectAnswers++;
+        toggleIsTestActive();
+      }
     }
 
     console.log(`Number of questions: ${numTotalQuestions}`)
@@ -52,24 +59,23 @@ class quiz {
 
 }
 
-function check(arr1, answer) {
-  
-  var index = arr1.indexOf(answer)
-  
-  if(index == -1)
-    return false;
-
+function doShit(arr1, index) {
   if(index == 0)
     question.shift();
   else if(index==question.length-1)
     question.pop();
   else {
-
     var back = arr1.slice(index+1);
     var front = arr1.slice(0,index);
     question = front.concat(back);
-    
   }
+}
+
+function check(arr1, answer) {
+  
+  var index = arr1.indexOf(answer)
+  
+
   console.log("question after: " + question);
   return true;
 }

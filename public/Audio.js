@@ -8,16 +8,16 @@ class AudioApi {
    }
 
    playSound(midiNote) {
-     console.log(midiNote);
+     // console.log(midiNote);
      var wave = createWave("sine", Notes.FrequencyFromNoteNumber(midiNote))
      wave.start();
      wave.stop(AudioContext.currentTime + .25);
   }
 
   playChord(chords) {
-    console.log(chords);
+    // console.log(chords);
     chords.forEach(note => {
-      console.log(note);
+      // console.log(note);
       this.playSound((note));  
     })
   }

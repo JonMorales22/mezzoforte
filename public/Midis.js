@@ -61,6 +61,7 @@ function MIDIMessageEventHandler(event) {
         if (event.data[2]!=0) {  // if velocity != 0, this is a note-on message
           //var noteFreq = frequencyFromNoteNumber(event.data[1])
           //console.log(event.data)
+          // console.log(event.data);
           Midis.emit("noteOn", event.data[1]);
           return;
         }
