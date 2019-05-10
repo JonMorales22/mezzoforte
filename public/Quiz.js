@@ -27,7 +27,7 @@ class quiz {
       toggleIsTestActive();
     }
     else {
-      doShit(question, index);
+      compare(question, index);
       
       if(question.length<1) {
         console.log("correct!");
@@ -42,7 +42,7 @@ class quiz {
   }
 }
 
-function doShit(arr1, index) {
+function compare(arr1, index) {
   if(index == 0)
     question.shift();
   else if(index==question.length-1)

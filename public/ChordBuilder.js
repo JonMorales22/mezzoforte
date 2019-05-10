@@ -1,6 +1,6 @@
 import {Notes} from './Notes.js';
 
-class ChordBuilder {
+export default class ChordBuilder {
 
   BuildMajorChord(rootMidiNote) {
     var third = rootMidiNote+4;
@@ -13,17 +13,12 @@ class ChordBuilder {
 
   }
 
-  BuildMajorChordsArray() {
-    var majorChords = [];
-  
-    Notes.GetMidiNotesArray().forEach(root => {
-      var temp = this.BuildMajorChord(root)
-      majorChords.push(temp);
-    });
-  
-    return majorChords;
+  Build7thChords() {
+    
   }
+
+
 
 }
 
-export var Chords = new ChordBuilder();
+//export var Chords = new ChordBuilder();
