@@ -40,18 +40,6 @@ class Midi extends EventEmitter {
     return inputsArray;
   }
 
-//   async openInput() {
-//     try {
-//       var result = await this.Input.open()
-//       return result;
-//     }
-//     catch(error) {
-//       console.error("Error: " + error);
-//       throw(error);
-//     }
-//   }
-
-
 }
 
 function MIDIMessageEventHandler(event) {

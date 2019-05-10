@@ -16,22 +16,6 @@ class quiz {
   }
 
   checkAnswer(answer) {
-  //   console.log("Answer: " + answer);
-  //   console.log("Question: " + question);
-
-  //   if(!isTestActive)
-  //     return;
-    
-  //   if(check(question, answer)) {
-  //     console.log('correct!');
-  //   }
-  //   else {
-  //     console.log('wrong!')
-  //   }
-
-  //   console.log(`Number of questions: ${numTotalQuestions}`)
-  //   console.log(`Number of correct answers: ${numCorrectAnswers}`)
-  // }
     
     if(!isTestActive || question.length<1  )
       return; 
@@ -56,7 +40,6 @@ class quiz {
     console.log(`Number of correct answers: ${numCorrectAnswers}`)
 
   }
-
 }
 
 function doShit(arr1, index) {
@@ -69,15 +52,6 @@ function doShit(arr1, index) {
     var front = arr1.slice(0,index);
     question = front.concat(back);
   }
-}
-
-function check(arr1, answer) {
-  
-  var index = arr1.indexOf(answer)
-  
-
-  console.log("question after: " + question);
-  return true;
 }
 
 function getRandomQuestion(num) {
