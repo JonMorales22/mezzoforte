@@ -1,16 +1,16 @@
 //v8.11.2
-import { Midis } from './Midis.js';
-import { Audio } from './Audio.js';
+import { Midis } from './Midi/Midis.js';
+import { Audio } from './Midi/Audio.js';
 
-import { midiEventManager }  from './Midi-Event-Manager';
+import { midiEventManager }  from './Midi/Midi-Event-Manager';
 
-import ChordFactory from './ChordFactory.js';
-import QuizEventManager from './QuizEventManager.js';
+import ChordFactory from './Chords/ChordFactory.js';
+import QuizEventManager from './Quiz/QuizEventManager.js';
 
 var chordFactory = new ChordFactory();
 //var quizEventManager = new QuizEventManager();
 
-import EndlessQuiz from './EndlessQuiz.js';
+import EndlessQuiz from './Quiz/EndlessQuiz.js';
 var quiz = new EndlessQuiz();
 
 var quiz_button = document.querySelector(".start_quiz");
