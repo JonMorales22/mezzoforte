@@ -18,7 +18,7 @@ var chordBuilder = new ChordBuilder();
     var majorChordsArray = [];
 
     Notes.GetMidiNotesArray().forEach(root => {
-      var temp = this.BuildMajorChord(root)
+      var temp = chordBuilder.BuildMajorChord(root)
       majorChordsArray.push(temp);
     });
 
