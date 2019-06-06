@@ -1,3 +1,4 @@
+
 import { Midis } from './Midis.js'
 import { Audio } from './Audio.js'
 
@@ -20,7 +21,8 @@ function setTime() {
     toggleisRecording();
     setTimeout(()=> {
       toggleisRecording()
-      console.log("testing");
+      //console.log("testing");
+      chord.sort();
       Midis.emit('chordOn', chord);
       chord = [];
       }, 100);
@@ -35,7 +37,7 @@ function toggleisRecording() {
 }
 
 function captureNotes(midiNote) {
-  console.log(isRecording);
+  //console.log(isRecording);
   
   if(!isRecording && !isActive)
     return;
