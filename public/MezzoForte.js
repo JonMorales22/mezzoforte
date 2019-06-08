@@ -4,14 +4,10 @@ import { Audio } from './Midi/Audio.js';
 import { Notes } from './Chords/Notes.js';
 import { midiEventManager }  from './Midi/Midi-Event-Manager';
 
-import ChordFactory from './Chords/ChordFactory.js';
-import QuizEventManager from './Quiz/QuizEventManager.js';
-
-var chordFactory = new ChordFactory();
-//var quizEventManager = new QuizEventManager();
-
+import ChordsOfScaleBuilder from './Chords/ChordsOfScaleBuilder.js';
 import EndlessQuiz from './Quiz/EndlessQuiz.js';
 
+var chordsOfScaleBuilder = new ChordsOfScaleBuilder();
 var quiz = new EndlessQuiz();
 
 var quiz_button = document.querySelector(".start_quiz");
@@ -19,10 +15,10 @@ var play_note = document.querySelector(".play_note");
 
 
 Audio.setAudioContext(new window.AudioContext);
-// console.log(Notes.GetMidiNotesArray());
+
 
 window.addEventListener('load', async function() {
-  quiz.setQuestionsArray(chordFactory.Create(chordFactory.Types.MajorChords));
+  quiz.setQuestionsArray(chordsOfScaleBuilder.Build(60, chordsOfScaleBuilder.Types.Minor));
   var test = await Midis.setMidiAccess(navigator);
 })
 

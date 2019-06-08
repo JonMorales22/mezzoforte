@@ -47,6 +47,7 @@ class NotesUtility {
     67: "g4",
     68: "g#4",
     69: "a4",
+    70: "a#4",
     71: "b4",
     72: "c5"
   }
@@ -90,10 +91,8 @@ class NotesUtility {
   GetMidiNotesArray() {
     var MidiNotesArray = []
     
-    for(var key in this.FrequencyToMidi) {
-      console.log(key);
+    for(var key in this.FrequencyToMidi) 
       MidiNotesArray.push(this.FrequencyToMidi[key]);
-    }
     
     return MidiNotesArray;
   }
