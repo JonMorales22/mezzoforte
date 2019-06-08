@@ -24,5 +24,9 @@ var chordBuilder = new ChordBuilder();
 
     return majorChordsArray;
   }
+
+  BuildMinorChordsArray() {
+    
+  }
  }
   

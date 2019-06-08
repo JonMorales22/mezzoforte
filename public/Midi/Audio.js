@@ -9,7 +9,7 @@ class AudioApi {
 
    playSound(midiNote) {
      // console.log(midiNote);
-     var wave = createWave("sine", Notes.FrequencyFromNoteNumber(midiNote))
+     var wave = createWave("sine", Notes.CalcFrequencyFromNoteNumber(midiNote))
      wave.start();
      wave.stop(AudioContext.currentTime + .25);
   }
@@ -23,7 +23,7 @@ class AudioApi {
   }
 
   playSoundFromMidiNote(midiNote) {
-    var freq = Notes.FrequencyFromNoteNumber(midiNote);
+    var freq = Notes.CalcFrequencyFromNoteNumber(midiNote);
     this.playSound(note);
   }
 }

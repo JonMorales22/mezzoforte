@@ -1,6 +1,6 @@
 class NotesUtility {
   
-  Midi = {
+  MidiToFrequency = {
     60: 261.63,
     62: 293.66,
     64: 329.63,
@@ -38,16 +38,20 @@ class NotesUtility {
 
   MidiToNoteName = {
     60: "c4",
+    61: "c#4",
     62: "d4",
+    63: "d#4",
     64: "e4",
     65: "f4",
+    66: "f#4",
     67: "g4",
+    68: "g#4",
     69: "a4",
     71: "b4",
     72: "c5"
   }
 
-  NotesDict = {
+  NoteNameToFrequency = {
     "c4": 261.63, 
     "d4": 293.66, 
     "e4": 329.63, 
@@ -57,7 +61,7 @@ class NotesUtility {
     "b4": 493.88, 
     "c5": 523.25
   }
-  Frequencies = {
+  FrequencyToNoteName = {
     261.63: "c4", 
     293.66: "d4", 
     329.63: "e4", 
@@ -77,8 +81,8 @@ class NotesUtility {
 
   GetNoteFrequenciesArray() {
     var NoteFrequenicesArray = []
-    for(var key in this.NotesDict) 
-      NoteFrequenicesArray.push( this.NotesDict[key] );
+    for(var key in this.NoteNameToFrequency) 
+      NoteFrequenicesArray.push( this.NoteNameToFrequency[key] );
     
     return NoteFrequenicesArray;
   }
@@ -86,20 +90,16 @@ class NotesUtility {
   GetMidiNotesArray() {
     var MidiNotesArray = []
     
-    for(var key in this.FrequencyToMidi) 
+    for(var key in this.FrequencyToMidi) {
+      console.log(key);
       MidiNotesArray.push(this.FrequencyToMidi[key]);
+    }
     
     return MidiNotesArray;
   }
 
-  calcMajorChords(rootMidiNote) {
-    var third = rootMidiNote+4;
-    var fifth = rootMidiNote+7;
-    var chord = [rootMidiNote, third, fifth];
-    return chord;
-  }
-
-  FrequencyFromNoteNumber( note ) { return Round(440 * Math.pow(2,(note-69)/12), 2); }
+  CalcFrequencyFromNoteNumber( note ) { return Round(440 * Math.pow(2,(note-69)/12), 2); }
+  //CalcNoteNumberFromFrequency( freq ) { return 69 + ( 12 * Math.log2(freq/440)) }
 }
 
 function Round(value, decimals) { return Number(Math.round(value+'e'+decimals)+'e-'+decimals); }

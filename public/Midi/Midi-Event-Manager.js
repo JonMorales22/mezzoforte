@@ -37,13 +37,9 @@ function toggleisRecording() {
 }
 
 function captureNotes(midiNote) {
-  //console.log(isRecording);
-  
   if(!isRecording && !isActive)
     return;
-
   chord.push(midiNote)
-  // console.log(chord);
 }
 
 class MidiEventManager {

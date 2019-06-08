@@ -8,6 +8,7 @@ export default class ChordFactory {
   Types = {
     Notes : 1,
     MajorChords: 2,
+    MinorChords: 3,
     Test: 9
   }
 
@@ -18,6 +19,9 @@ export default class ChordFactory {
 
         case this.Types.MajorChords:
           return arrayBuilder.BuildMajorChordsArray();
+
+        case this.Types.MinorChords:
+          return arrayBuilder.BuildMinorChordsArray();
 
         case this.Types.Testing: //THIS IS FOR TESTING ONLY!
           return Test.chords;
