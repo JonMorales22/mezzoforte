@@ -32,5 +32,20 @@ export default class ChordsOfScaleBuilder {
   }
 }
 
-var majorPattern =  [chordBuilder.MajorChord, chordBuilder.MinorChord, chordBuilder.MinorChord, chordBuilder.MajorChord, chordBuilder.MajorChord, chordBuilder.MinorChord, chordBuilder.DiminishedChord, chordBuilder.MajorChord];
-var minorPattern =  [chordBuilder.MinorChord, chordBuilder.DiminishedChord, chordBuilder.MajorChord, chordBuilder.MinorChord, chordBuilder.MinorChord, chordBuilder.MajorChord, chordBuilder.MajorChord, chordBuilder.MinorChord];
+var majorPattern =  [chordBuilder.MajorChord, 
+                     chordBuilder.MinorChord, 
+                     chordBuilder.MinorChord, 
+                     chordBuilder.MajorChord, 
+                     chordBuilder.MajorChord, 
+                     chordBuilder.MinorChord, 
+                     chordBuilder.DiminishedChord, 
+                     chordBuilder.MajorChord];
+
+var minorPattern =  [chordBuilder.MinorChord,
+                     chordBuilder.DiminishedChord,
+                     chordBuilder.MajorChord,
+                     chordBuilder.MinorChord,
+                     chordBuilder.MinorChord,
+                     chordBuilder.MajorChord,
+                     chordBuilder.MajorChord,
+                     chordBuilder.MinorChord];

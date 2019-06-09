@@ -4,16 +4,17 @@ var midiStuff;
 
 class Midi extends EventEmitter {
   Input;
+  InputsArray = [];
 
   async setMidiAccess(navigator) {
     try {
       midiStuff = await navigator.requestMIDIAccess();
       
-      var inputs = this.getInputs();
-      this.setInput(inputs[0]);
-      var result = await this.Input.open();
+      //var inputs = this.getInputs();
+      //this.setInput(inputs[0]);
+      //var result = await this.Input.open();
 
-      return this.Input;
+      // return this.Input;
     }
     catch(error) {
       console.error(error)
@@ -21,23 +22,24 @@ class Midi extends EventEmitter {
 
   }
 
-  setInput(input) {
-    input.onmidimessage = MIDIMessageEventHandler;
-    this.Input = input;
+  async setInput(input) {
+    try {
+      input.onmidimessage = MIDIMessageEventHandler;
+      this.Input = input;
+      var result = await this.Input.open();
+    }
+    catch(error) {
+      console.error(error);
+    }
   }
 
   getInputs() {
-
-    var inputsArray = [];
     var inputValues = midiStuff.inputs;
-    
-
+    var inputs = [];    
     midiStuff.inputs.forEach(function(port, key) {
-      inputsArray.push(port);
+      inputs.push(port);
     })
-
-
-    return inputsArray;
+    return inputs;
   }
 
 }
