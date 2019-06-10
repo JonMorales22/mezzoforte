@@ -22,11 +22,23 @@ class Midi extends EventEmitter {
 
   }
 
-  async setInput(input) {
+  // async setInput(input) {
+  //   try {
+  //     input.onmidimessage = MIDIMessageEventHandler;
+  //     this.Input = input;
+  //     var result = await this.Input.open();
+  //   }
+  //   catch(error) {
+  //     console.error(error);
+  //   }
+  // }
+
+  async setInput(index) {
     try {
-      input.onmidimessage = MIDIMessageEventHandler;
-      this.Input = input;
+      this.Input = this.InputsArray[index];
+      this.Input.onmidimessage = MIDIMessageEventHandler;
       var result = await this.Input.open();
+      return result;
     }
     catch(error) {
       console.error(error);
@@ -36,10 +48,11 @@ class Midi extends EventEmitter {
   getInputs() {
     var inputValues = midiStuff.inputs;
     var inputs = [];    
-    midiStuff.inputs.forEach(function(port, key) {
-      inputs.push(port);
+    midiStuff.inputs.forEach((port, key) => {
+      this.InputsArray.push(port);
     })
-    return inputs;
+
+    return this.InputsArray;
   }
 
 }

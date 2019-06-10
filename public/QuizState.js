@@ -1,7 +1,7 @@
 class QuizState {
   currentQuestion;
-  numTotalQuestions;
-  numCorrect;
+  numTotalQuestions=0;
+  numCorrect=0;
   isActive;
 }
 

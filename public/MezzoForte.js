@@ -34,27 +34,24 @@ window.addEventListener('load', async function() {
   })
 })
 
-function blah() {
-  console.log('test');
-  // console.log(input);
-  // result = input;
-}
 //=======================================================//
 
 
 quiz_button.onclick = function() {
   quizState.currentQuestion = quiz.createQuestion();
   Audio.playChord(quizState.currentQuestion);
-  quiz.numTotalQuestions++;
+  quizState.numTotalQuestions++;
 };
 
-inputs_button.onclick = function() {
+inputs_button.onclick = async function() {
   var inputs = document.getElementsByName('input');
-  inputs.forEach(e=> {
-    if(e.checked)
+  inputs.forEach(async (e) => {
+    if(e.checked) {
       console.log(e.value);
+      var res = await Midis.setInput(e.value)
+      console.log(res);
+    }
   })
-  //inputs.setInput(result)
 }
 
 play_note.onclick = function() {
@@ -63,13 +60,16 @@ play_note.onclick = function() {
 }
 
 Midis.on('chordOn', (chord) => {
-  if(quiz.compare(quizState.currentQuestion, chord)){
+  if(!quizState.currentQuestion)
+    return;
+
+  if(quiz.compare(quizState.currentQuestion, chord)) {
     console.log("correct!");
-    quizState.numCorrectAnswers++;
+    quizState.numCorrect++;
   } else {
     console.log("wrong...");
   }
 
   console.log(quizState.numTotalQuestions);
-  console.log(quizState.numCorrectAnswers);
+  console.log(quizState.numCorrect);
 }) 
