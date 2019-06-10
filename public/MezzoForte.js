@@ -64,6 +64,12 @@ play_note.onclick = function() {
     Audio.playChord(quizState.currentQuestion);
 }
 
+
+var correctChord = document.querySelector('.correct_chord');
+var chordReceived = document.querySelector('.chord_received');
+var total_num_questions = document.querySelector('.total_num_questions');
+var num_correct = document.querySelector('.num_correct');
+
 Midis.on('chordOn', (chord) => {
   if(!quizState.currentQuestion)
     return;
@@ -74,6 +80,12 @@ Midis.on('chordOn', (chord) => {
   } else {
     console.log("wrong...");
   }
+
+
+  correctChord.innerHTML = chordClassifier.classify(chord);
+  chordReceived.innerHTML = chordClassifier.classify(quizState.currentQuestion);
+  total_num_questions.innerHTML = quizState.numTotalQuestions;
+  num_correct.innerHTML = quizState.numCorrect
 
   console.log(chordClassifier.classify(chord));
   console.log(chordClassifier.classify(quizState.currentQuestion));

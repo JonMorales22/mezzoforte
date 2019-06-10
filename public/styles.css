@@ -2,6 +2,10 @@ body {
   text-align: center;
 }
 
+body > * {
+  margin: 25px;
+}
+
 .note_display {
   margin: 25px;
 }
