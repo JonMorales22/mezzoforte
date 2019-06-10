@@ -4,7 +4,7 @@ var questionsArray = [];
 
 export default class EndlessQuiz extends Quiz {
   setQuestionsArray(qA) { questionsArray = qA }
-  
+  getQuestionsArray() {return questionsArray; }
   createQuestion() {
     return questionsArray[getRandomQuestion(questionsArray.length)];
   }
