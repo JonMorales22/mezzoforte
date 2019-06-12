@@ -1,4 +1,10 @@
 class NotesUtility {
+
+  ChordTypes = {
+    Major: 'Major',
+    Minor: 'Minor',
+    Diminished: 'Diminished'
+  }
   
   MidiToFrequency = {
     60: 261.63,
@@ -62,6 +68,7 @@ class NotesUtility {
     "b4": 493.88, 
     "c5": 523.25
   }
+
   FrequencyToNoteName = {
     261.63: "c4", 
     293.66: "d4", 
@@ -98,7 +105,7 @@ class NotesUtility {
   }
 
   CalcFrequencyFromNoteNumber( note ) { return Round(440 * Math.pow(2,(note-69)/12), 2); }
-  //CalcNoteNumberFromFrequency( freq ) { return 69 + ( 12 * Math.log2(freq/440)) }
+  CalcNoteNumberFromFrequency( freq ) { return 69 + ( 12 * Math.log2(freq/440)) }
 }
 
 function Round(value, decimals) { return Number(Math.round(value+'e'+decimals)+'e-'+decimals); }

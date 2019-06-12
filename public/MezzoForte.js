@@ -30,8 +30,6 @@ window.addEventListener('load', async function() {
   var test = await Midis.setMidiAccess(navigator);
   var inputs = await Midis.getInputs();
 
-  console.log(inputs);
-
   inputs.forEach((input,index) => {
 
     inputs_holder.innerHTML += `<input type="radio" name="input" value=${index}>${input.name}<br>`;
@@ -45,8 +43,7 @@ quiz_button.onclick = function() {
   quizState.currentQuestion = quiz.createQuestion();
   Audio.playChord(quizState.currentQuestion);
   quizState.numTotalQuestions++;
-  console.log(quiz.getQuestionsArray());
-};
+}
 
 inputs_button.onclick = async function() {
   var inputs = document.getElementsByName('input');

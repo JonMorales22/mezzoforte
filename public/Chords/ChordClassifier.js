@@ -10,18 +10,20 @@ export default class ChordClassifier {
 
   findQuality(chord) {
     console.log(chord);
-    var quality;
     
-    var res1 = chord[1] - chord[0];
-    var res2 = chord[2] - chord[1];
+    var thirdInterval = chord[1] - chord[0];
+    var fifthInterval = chord[2] - chord[1];
 
-    if((res1==4&&res2==3))
-      quality = 'Major';
-    else if((res1==3&&res2==4))
-      quality = 'Minor';
-    else
-      quality = 'idk';
+    if(thirdInterval==4 && fifthInterval==3)
+      return this.stringOfEnum(Notes.ChordTypes, Notes.ChordTypes.Major);
+    else if(thirdInterval==3 && fifthInterval==4)
+      return this.stringOfEnum(Notes.ChordTypes, Notes.ChordTypes.Minor);
+    else if(thirdInterval==3 && fifthInterval==3)
+      return this.stringOfEnum(Notes.ChordTypes, Notes.ChordTypes.Diminished);
+  }
 
-    return quality;
+  stringOfEnum(e,value) {
+    for (var k in e) if (e[k] == value) return k;
+    return null;
   }
 }

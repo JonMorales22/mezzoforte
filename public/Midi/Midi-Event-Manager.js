@@ -21,7 +21,6 @@ function setTime() {
     toggleisRecording();
     setTimeout(()=> {
       toggleisRecording()
-      //console.log("testing");
       chord.sort();
       Midis.emit('chordOn', chord);
       chord = [];
