@@ -1,15 +1,15 @@
 export default class ScaleBuilder {
-  Scales = {
+  ScaleTypes = {
     Major: 1,
     Minor: 2
   } 
   
   GetScaleIntervals(scale) {
     switch(scale) {
-      case this.Scales.Major:
+      case this.ScaleTypes.Major:
         return majorIntervals;
 
-      case this.Scales.Minor:
+      case this.ScaleTypes.Minor:
         return minorIntervals;
     }
   } 

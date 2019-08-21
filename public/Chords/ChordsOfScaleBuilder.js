@@ -6,18 +6,17 @@ var chordBuilder = new ChordBuilder();
 var scaleBuilder = new ScaleBuilder();
 
 export default class ChordsOfScaleBuilder {
-  Types = {
+  ScaleTypes = {
     Major: 1,
     Minor: 2,
-    Diminished: 3
   }
 
   GetPattern(scale) {
     switch(scale) {
-      case this.Types.Major:
+      case this.ScaleTypes.Major:
         return majorPattern;
 
-      case this.Types.Minor:
+      case this.ScaleTypes.Minor:
         return minorPattern;   
     }
   }

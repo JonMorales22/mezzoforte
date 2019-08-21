@@ -1,4 +1,6 @@
 //v8.11.2
+import './styles.css'; 
+
 import { Midis } from './Midi/Midis.js';
 import { Audio } from './Midi/Audio.js';
 import { midiEventManager }  from './Midi/Midi-Event-Manager';
@@ -25,7 +27,7 @@ Audio.setAudioContext(new window.AudioContext);
 var result;
 
 window.addEventListener('load', async function() {
-  quiz.setQuestionsArray(chordsOfScaleBuilder.Build(60, chordsOfScaleBuilder.Types.Major));
+  quiz.setQuestionsArray(chordsOfScaleBuilder.Build(60, chordsOfScaleBuilder.ScaleTypes.Major));
   
   var test = await Midis.setMidiAccess(navigator);
   var inputs = await Midis.getInputs();
