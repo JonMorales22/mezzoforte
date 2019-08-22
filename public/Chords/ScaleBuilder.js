@@ -1,7 +1,8 @@
 export default class ScaleBuilder {
   ScaleTypes = {
     Major: 1,
-    Minor: 2
+    Minor: 2,
+    // Test: 3
   } 
   
   GetScaleIntervals(scale) {
@@ -11,6 +12,9 @@ export default class ScaleBuilder {
 
       case this.ScaleTypes.Minor:
         return minorIntervals;
+    
+      // case this.ScaleTypes.Test:
+      //   return testIntervals;
     }
   } 
 
@@ -28,3 +32,4 @@ export default class ScaleBuilder {
 
 var majorIntervals = [0,2,4,5,7,9,11,12];
 var minorIntervals = [0,2,3,5,7,8,10,12];
+// var testIntervals = [0];

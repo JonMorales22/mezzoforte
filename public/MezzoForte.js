@@ -45,6 +45,7 @@ quiz_button.onclick = function() {
   quizState.currentQuestion = quiz.createQuestion();
   Audio.playChord(quizState.currentQuestion);
   quizState.numTotalQuestions++;
+  quizState.isActive=true;
 }
 
 inputs_button.onclick = async function() {
@@ -70,11 +71,12 @@ var total_num_questions = document.querySelector('.total_num_questions');
 var num_correct = document.querySelector('.num_correct');
 
 Midis.on('chordOn', (chord) => {
-  if(!quizState.currentQuestion)
+  if(!quizState.currentQuestion || !quizState.isActive)
     return;
 
   if(quiz.compare(quizState.currentQuestion, chord)) {
     console.log("correct!");
+    quizState.isActive=false;
     quizState.numCorrect++;
   } else {
     console.log("wrong...");

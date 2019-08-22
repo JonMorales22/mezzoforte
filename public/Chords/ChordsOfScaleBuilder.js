@@ -9,6 +9,7 @@ export default class ChordsOfScaleBuilder {
   ScaleTypes = {
     Major: 1,
     Minor: 2,
+    // Test: 3
   }
 
   GetPattern(scale) {
@@ -18,6 +19,9 @@ export default class ChordsOfScaleBuilder {
 
       case this.ScaleTypes.Minor:
         return minorPattern;   
+
+      // case this.ScaleTypes.Test:
+      //   return testPattern; 
     }
   }
 
@@ -48,3 +52,5 @@ var minorPattern =  [chordBuilder.MinorChord,
                      chordBuilder.MajorChord,
                      chordBuilder.MajorChord,
                      chordBuilder.MinorChord];
+
+// var testPattern = [chordBuilder.MajorChord]                     
