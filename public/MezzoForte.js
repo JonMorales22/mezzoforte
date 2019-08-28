@@ -33,7 +33,6 @@ window.addEventListener('load', async function() {
   var inputs = await Midis.getInputs();
 
   inputs.forEach((input,index) => {
-
     inputs_holder.innerHTML += `<input type="radio" name="input" value=${index}>${input.name}<br>`;
   })
 })
@@ -54,6 +53,11 @@ inputs_button.onclick = async function() {
     if(e.checked) {
       console.log(e.value);
       var res = await Midis.setInput(e.value)
+      if(res.connection=="open") {
+        Audio.playSound(60);
+        var asdf = document.querySelector('.inputs_message')
+        asdf.innerHTML = `MIDI connection is now ${res.connection} port: ${res.name}`
+      }
       console.log(res);
     }
   })

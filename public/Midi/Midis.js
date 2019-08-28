@@ -37,6 +37,7 @@ class Midi extends EventEmitter {
     try {
       this.Input = this.InputsArray[index];
       this.Input.onmidimessage = MIDIMessageEventHandler;
+      this.Input.onstatechange = StateChangeHandler;
       var result = await this.Input.open();
       return result;
     }
@@ -75,6 +76,11 @@ function MIDIMessageEventHandler(event) {
         return;
       }
     }
+  }
+
+  function StateChangeHandler(event) {
+    console.log(event);
+    console.log(`"Current State: "`)
   }
 
 export var Midis = new Midi();
